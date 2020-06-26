@@ -389,7 +389,7 @@ h2 {
   height: 66%;
 }
 
-.close {
+.close, .close-end {
   position: absolute;
   top: 5px;
   right: 10px;
@@ -399,8 +399,7 @@ h2 {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus, .close-end:hover, .close-end:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
