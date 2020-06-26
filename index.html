@@ -6,57 +6,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Guac-A-Mole</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1>Guac-A-Mole!</h1>
-        <br>
-        <div class="score-container">Score: <span class="score">0</span></div>
+    <div class="instructions">
+        <p>Guac-A-Mole is a clone of popular arcade game Whack-A-Mole, which involves quickly and repeatedly hitting a variety of guacamole ingredients with
+        a mallet as they pop up from holes to make a nice and fresh guacamole.</p>
     </div>
-            <div class="start-btn">
-                <button>Start</button>
-            </div>
-        
-            <div class="modal-content">
-                <div id="myModal" class="modal">
-                    <span class="close">&times;</span>
-                    <h2>Selec difficulty</h2>
-                    <button class="diff easy">Easy</button>
-                    <button class="diff medium">Medium</button>
-                    <button class="diff hard">Hard</button>
+    <div class="main-content">
+        <div class="header">
+            <h1>Guac-A-Mole!</h1>
+            <br>
+            <div class="score-container">Score: <span class="score">0</span></div>
+        </div>  
+            <div class="buttons">
+                <div class="start-btn">
+                    <button>Start</button>
                 </div>
+                <!-- <div class="restart-btn">
+                    <button>Restart</button>
+                </div> -->
             </div>
+            <div class="timer">
+                <p id="clock"></p>
+            </div>
+            
+                <div class="modal-content">
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <h2>Select difficulty</h2>
+                        <button class="diff easy">Easy</button>
+                        <button class="diff medium">Medium</button>
+                        <button class="diff hard">Hard</button>
+                    </div>
+                </div>
+                <div class="result-modal">
+                    <div id="modal-result">
+                        <span class="close-end">&times;</span>
+                        <h2 id="title"></h2>
+                        <p>Your result <span id="score-new"></span></p>
+                        <div class="gif"></div>
+                        <button class="play-again">Play again</button>
+                    </div>
+                </div>
 
-    <div class="game">
-        <div class="hole one">
-            <div class="guac"></div>
+        <div class="game">
+            <div class="hole one">
+                <div class="guac"></div>
+            </div>
+            <div class="hole two">
+                <div class="guac"></div>
+            </div>
+            <div class="hole three">
+                <div class="guac"></div>
+            </div>
+            <div class="hole four">
+                <div class="guac"></div>
+            </div>
+            <div class="hole five">
+                <div class="guac"></div>
+            </div>
+            <div class="hole six">
+                <div class="guac"></div>
+            </div>
+            <div class="hole seven">
+                <div class="guac"></div>
+            </div>
+            <div class="hole eight">
+                <div class="guac"></div>
+            </div>
+            <div class="hole nine">
+                <div class="guac"></div>
+            </div>
         </div>
-        <div class="hole two">
-            <div class="guac"></div>
-        </div>
-        <div class="hole three">
-            <div class="guac"></div>
-        </div>
-        <div class="hole four">
-            <div class="guac"></div>
-        </div>
-        <div class="hole five">
-            <div class="guac"></div>
-        </div>
-        <div class="hole six">
-            <div class="guac"></div>
-        </div>
-        <div class="hole seven">
-            <div class="guac"></div>
-        </div>
-        <div class="hole eight">
-            <div class="guac"></div>
-        </div>
-        <div class="hole nine">
-            <div class="guac"></div>
-        </div>
+    </div>
+    <div class="portfolio">
+        <a class="port git" href="https://github.com/omelnykov1">
+            <i class="fab fa-github"></i>
+        </a>
+        <a class="port linked" href="https://www.linkedin.com/in/oleksandr-melnykov-347b811a8/">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a class="port angel" href="https://angel.co/u/dev-melnikov">
+            <i class="fab fa-angellist"></i>
+        </a>
     </div>
 
     <script>

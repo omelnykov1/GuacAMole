@@ -5,6 +5,7 @@
   font-size: 24px;
   font-weight: 300;
   color: #383838;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 
@@ -15,6 +16,56 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
+    margin-top: 4vh;
+    display: grid;
+    grid-template-columns: 22% 58% 20%;
+    
+}
+
+.instructions {
+  width: 100%;
+  display: flex;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+.instructions p {
+  margin-top:  30vh;
+  font-size: 30px;
+}
+
+.portfolio {
+  /* border: 1px solid black; */
+  justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.port i{
+  font-size: 44px;
+  margin-top: 2vh;
+  margin-right: 3vw;
+  cursor: pointer;
+}
+
+.git i:hover {
+  color: #F5FFFA;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+}
+
+.linked i:hover {
+  cursor: pointer;
+  
+  color: #B0E0E6;
+  transition: ease-in-out 0.5s;
+}
+
+.angel i:hover{
+  cursor: pointer;
+  color: #B0C4DE;
+  transition: ease-in-out 0.5s;
 }
 
 .show-score {
@@ -30,11 +81,40 @@ body {
   margin-left: 43%;
 }
 
-.start-btn button {
-      box-sizing: border-box;
+.buttons {
+  height: 10vh;
+  display: grid !important;
+  margin: 0 auto;
+  grid-template-columns: 50% 50%;
+  width: 28vw;
+  justify-content: space-between !important;
+  margin-left: 13vw;
+}
+
+.timer {
+  height: 2vh;
+  margin: 0 auto;
+  width: 28vw;
+  font-size: 25px;
+  margin-left: 27.5vw;
+}
+
+.gif {
+  width: 65%;
+  height: 70%;
+  background-image: url(https://media.giphy.com/media/5YrSVDI0tYPc3B6y4m/giphy.gif);
+}
+
+.timer p {
+  font-size: 36px;
+}
+
+.start-btn button, .restart-btn button{
+  margin-left: 100px;
+  box-sizing: border-box;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: none;
   border-radius: 0.6em;
@@ -43,31 +123,30 @@ body {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
-  /* margin: 20px; */
   padding: 1.2em 2.8em;
   display: flex;
-  left: 50%;
-  /* justify-content: center; */
+  /* left: 50%; */
   text-align: center;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  /* width: 80%; */
 }
 
-.start-btn button:hover, .start-btn button:focus {
+.start-btn button:hover, .start-btn button:focus, .restart-btn button:hover, .restart-btn button:focus {
   color: #fff;
   outline: 0;
 }
 
-.start-btn button {
+.start-btn button, .restart-btn button {
+  margin-right: 50px; 
+  /* float: left; */
   border-color: none;
   border: none;
   color: #fff;
@@ -78,18 +157,24 @@ body {
   -webkit-transition: background 500ms ease-in-out;
   transition: background 500ms ease-in-out;
 }
-.start-btn button:hover {
+.start-btn button:hover, .restart-btn button:hover {
   background-position: 0;
 }
 
+.restart-btn button {
+  background-image: -webkit-linear-gradient(45deg, #87CEFA 50%, transparent 50%);
+  background-image: linear-gradient(45deg, #87CEFA 50%, transparent 50%);
+}
+
+
+
 .score {
   display: inline-block;
-  font-size: 70%;
-  /* background: white; */
-  padding: 0.5rem 1rem;
+  font-size: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+   margin: 0.5rem 0;
+   margin-bottom: 2vh;
 }
 
 .score.add {
@@ -100,10 +185,23 @@ body {
 }
 
 
-h1, .score-container {
+h1 {
+    width: 100%;
     text-align: center;
     font-size: 200%;
     margin: 0.5rem 0;
+}
+
+h2 {
+  font-size: 160%;
+}
+
+.score-container {
+  text-align: center;
+  font-size: 200%;
+  margin: 0.3rem 0;
+  float:left;
+  width: 100%;
 }
 
 .score-container {
@@ -112,10 +210,12 @@ h1, .score-container {
 
 .header {
     display: flex;
+    margin: 0 auto;
     flex-direction: row;
     justify-content: center;
+    width: 35vw;
+    justify-content: space-between;
 }
-
 
 .game {
   width: 45vw;
@@ -123,6 +223,7 @@ h1, .score-container {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  cursor: url('../src/images/mallett.png'), auto;
 }
 
 .hole {
@@ -158,7 +259,7 @@ h1, .score-container {
 
 /*  */
 
-.diff {
+.diff, .play-again {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -187,10 +288,11 @@ h1, .score-container {
   width: 80%;
 }
 
-.diff:hover, .diff:focus {
+.diff:hover, .diff:focus, .play-again:hover, .play-again:focus {
   color: #fff;
   outline: 0;
 }
+
 
 .hard {
   border: 2px solid #e74c3c;
@@ -198,8 +300,9 @@ h1, .score-container {
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.hard:hover {
+.hard:hover{
   box-shadow: 0 0 40px 40px #e74c3c inset;
+  transition: ease-in-out 1.0s;
 }
 
 .medium {
@@ -211,9 +314,10 @@ h1, .score-container {
 
 .medium:hover {
   box-shadow: 0 0 40px 40px #7A9D96 inset;
+  transition: ease-in-out 1.0s;
 }
 
-.easy {
+.easy  {
   -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   border: 2px solid #7c677f;
@@ -222,11 +326,31 @@ h1, .score-container {
 
 .easy:hover {
   box-shadow: 0 0 40px 40px #7c677f inset;
+  transition: ease-in-out 1.0s;
 }
+
+.play-again {
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  border: 2px solid #00BFFF;
+  color: #383838;
+  width: 500px;
+  border: none;
+  border-radius: 20px;
+}
+
+.play-again:hover {
+  box-shadow: 0 0 40px 40px #00BFFF inset;
+  width: 500px;
+  cursor: pointer;
+  transition: ease-in-out 1.0s;
+  transition: ease-out 1.0s;
+}
+
 
 /* modal */
 
-.modal-content {
+.modal-content, .result-modal {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -243,12 +367,13 @@ h1, .score-container {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+
 .modal-active {
   visibility: visible;
   opacity: 1;
 }
 
-.modal {
+.modal, #modal-result {
   position: relative;
   background: #e4decd;
   border-radius: 10px;
@@ -258,6 +383,10 @@ h1, .score-container {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+}
+
+#modal-result {
+  height: 66%;
 }
 
 .close {
