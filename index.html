@@ -14,6 +14,9 @@
     <audio src="./src/images/background.mp3" id="background"></audio>
     <audio src="./src/images/hit.wav" id="slice"></audio>
     <audio src="./src/images/choose.wav" id="choose"></audio>
+    <audio src="./src/images/strike.wav" id="strike-sound"></audio>
+    <audio src="./src/images/Game-over.wav" id="game-over"></audio>
+    <audio src="./src/images/restart.wav" id="restart"></audio>
         <div class="left-side">
             <div class="social">
                 <a class="port git" href="https://github.com/omelnykov1">
@@ -31,24 +34,21 @@
                 a mallet as they pop up from holes to make a nice and fresh guacamole.</p>
             </div>
         </div>
-    <div class="main-content">
-        <div class="header">
-            <h1>Guac-A-Mole!</h1>
-            <br>
-            <div class="score-container">Score: <span class="score">0</span></div>
-        </div>  
-            <div class="buttons">
-                <div class="start-btn">
-                    <button>Start</button>
+            <div class="main-content">
+                <div class="header">
+                    <h1>Guac-A-Mole!</h1>
+                    <br>
+                    <div class="score-container">Score: <span class="score">0</span></div>
+                </div>  
+                <div class="buttons">
+                    <div class="start-btn">
+                        <button>Start</button>
+                    </div>
+                    <div class="timer">
+                        <p id="clock"></p>
+                    </div>
                 </div>
-                <!-- <div class="restart-btn">
-                    <button>Restart</button>
-                </div> -->
-            </div>
-            <div class="timer">
-                <p id="clock"></p>
-            </div>
-            
+                
                 <div class="modal-content">
                     <div id="myModal" class="modal">
                         <span class="close">&times;</span>
@@ -67,60 +67,59 @@
                         <button class="play-again">Play again</button>
                     </div>
                 </div>
-
-        <div class="game">
-            <div class="hole one">
-                <div class="guac"></div>
+                <div class="game">
+                    <div class="hole one">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole two">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole three">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole four">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole five">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole six">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole seven">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole eight">
+                        <div class="guac"></div>
+                    </div>
+                    <div class="hole nine">
+                        <div class="guac"></div>
+                    </div>
+                </div>
             </div>
-            <div class="hole two">
-                <div class="guac"></div>
-            </div>
-            <div class="hole three">
-                <div class="guac"></div>
-            </div>
-            <div class="hole four">
-                <div class="guac"></div>
-            </div>
-            <div class="hole five">
-                <div class="guac"></div>
-            </div>
-            <div class="hole six">
-                <div class="guac"></div>
-            </div>
-            <div class="hole seven">
-                <div class="guac"></div>
-            </div>
-            <div class="hole eight">
-                <div class="guac"></div>
-            </div>
-            <div class="hole nine">
-                <div class="guac"></div>
+        <div class="right-side">
+            <div class="strikes">
+                <div class="no-strike-1">
+                    <img src="./src/images/miss.png">
+                </div>
+                <div class="no-strike-2">
+                    <img src="./src/images/miss.png">
+                </div>
+                <div class="no-strike-3">
+                    <img src="./src/images/miss.png">
+                </div>
+                <div class="no-strike-4">
+                    <img src="./src/images/miss.png">
+                </div>
+                <div class="no-strike-5">
+                    <img src="./src/images/miss.png">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="right-side">
-        <div class="strikes">
-            <div class="no-strike-1">
-                <img src="./src/images/miss.png" alt="">
-            </div>
-            <div class="no-strike-2">
-                <img src="./src/images/miss.png" alt="">
-            </div>
-            <div class="no-strike-3">
-                <img src="./src/images/miss.png" alt="">
-            </div>
-            <div class="no-strike-4">
-                <img src="./src/images/miss.png" alt="">
-            </div>
-            <div class="no-strike-5">
-                <img src="./src/images/miss.png" alt="">
-            </div>
-        </div>
-    </div>
 
     <script>
         window.onclick = (e) => {
-            if (e.taget == document.querySelector(".modal-content")) {
+            if (e.target == document.querySelector(".modal-content")) {
                 document.querySelector(".modal-content").classList.remove('modal-active')
             }
         }

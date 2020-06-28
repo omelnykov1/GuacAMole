@@ -9,9 +9,13 @@ const images = ["url('./src/images/avocado1.png') bottom center no-repeat; ",
                 "url('./src/images/lime1.png') bottom center no-repeat;",
                 "url('./src/images/red_onion.png') bottom center no-repeat;",
             ]
+
 let audio = document.getElementById('background');
 let choose = document.getElementById('choose');
-// modals
+let strikeSound = document.getElementById('strike-sound');
+let gameOver = document.getElementById('game-over');
+let restartSound = document.getElementById('restart');
+
 
 let modal = document.querySelector(".modal-content");
 let endGameModal = document.querySelector(".result-modal");
@@ -21,55 +25,57 @@ let closeModalEnd= document.querySelector(".close-end");
 startGame.addEventListener('click', () => {
             lost = true
             modal.classList.add('modal-active')
-            });
+        });
 
 closeModal.addEventListener('click', () => modal.classList.remove('modal-active'));
-closeModalEnd.addEventListener('click', () => modal.classList.remove('modal-active'));
+closeModalEnd.addEventListener('click', () => endGameModal.classList.remove('modal-active'));
 
 let score = 0;
 let lost = false;
 let started = false;
 let strikes = [];
-let clicked = true;
+let clicked;
 
-const timeRange = (start, finish) => {
-    return Math.round(Math.random() * (finish - start) + start);
-}
+console.log(clicked);
 
 const randomHole = allHoles => {
     let previous;
     const idx = Math.floor(Math.random() * allHoles.length);
     const hole = allHoles[idx];
-    if (hole === previous) return randomHole(allHoles)
+    if (hole === previous) {
+        return randomHole(allHoles)
+    }
     previous = hole;
     return hole;
 }
 
 const populate = (start) => {
     const hole = randomHole(allHoles);
-    const image = images[Math.floor(Math.random() * images.length)]
-    hole.firstElementChild.setAttribute("style", `background: ${image}; background-size: 50%;`)
+    const image = images[Math.floor(Math.random() * images.length)];
+    hole.firstElementChild.setAttribute("style", `background: ${image}; background-size: 50%;`);
     hole.classList.add('show');
 
-    setTimeout(() => { 
-            hole.classList.remove('show');
-            clicked = false;
-            console.log(clicked)
-            console.log(strikes);
-            let strike;
-            if (!clicked) {
-                strikes.push('strike');
-                // add div with a picture and animation
-                strike = document.querySelector(`.no-strike-${strikes.length}`);
-                strike.classList.remove(`no-strike-${strikes.length}`)
-                strike.classList.add('yes-strike')  
-            }
-            if (!lost) populate(start);
-            }, start);
-    
     if (strikes.length > 4) {
         lost = true;
+        gameOver.play();
     }
+
+    clicked = false;
+    
+    setTimeout(() => { 
+        hole.classList.remove('show');
+        let strike;
+
+        if (!clicked) {
+            strikes.push('strike');
+            strike = document.querySelector(`.no-strike-${strikes.length}`);
+            strike.classList.remove(`no-strike-${strikes.length}`);
+            strikeSound.volume = 0.3;
+            strikeSound.play();
+            strike.classList.add('yes-strike');  
+        }
+        if (!lost) populate(start);
+    }, start);
 }
 
 
@@ -88,7 +94,8 @@ const startTime = () => {
         timer.innerHTML = `${minutes} : ${seconds}`;
         mins--;
         let result = document.getElementById('score-new');
-        let title = document.getElementById('title')
+        let title = document.getElementById('title');
+
         if (mins < 0 || lost) {
             lost = true;
             clearInterval(x)
@@ -108,29 +115,40 @@ const startTime = () => {
     }, 1000)
 }
 
-const start = (e) => {
+const restartGame = () => {
     lost = false;
     score = 0;
-    let start;
     totalScore.textContent = 0;
     audio.volume = 0.05;
     audio.play();
     started = true;
+    strikes = [];
+    let allStrikes = Array.from(document.querySelector('.strikes').children);
+
+    allStrikes.forEach((str, i) => {
+        str.classList.remove('yes-strike');
+        str.classList.add(`no-strike-${i + 1}`);
+    })
+}
+
+const start = (e) => {
+    restartGame();
+    let start;
+
     if (e.currentTarget.classList[1] === 'easy') {
-        start = 850;
+        start = 1050;
     } else if(e.currentTarget.classList[1] === 'medium') {
-        start = 670;
+        start = 770;
     } else if (e.currentTarget.classList[1] === 'hard') {
-        start = 500;
+        start = 550;
     }
+
     populate(start);
     modal.classList.remove('modal-active');
     startTime();
-    
 }
 
 const hit = e => {
-    debugger
     let hitSound = document.getElementById('slice');
     hitSound.volume = 0.3;
     hitSound.play();
@@ -140,21 +158,8 @@ const hit = e => {
     totalScore.textContent = score;
 }
 
-
-// button handlers
-
-
 allGuac.forEach(guac => guac.addEventListener("click", hit));
 difficulty.forEach(diff => diff.addEventListener('click', start));
-
-// document.addEventListener('mousedown', e => {
-//     debugger
-//     if (started && !lost && e.currentTarget.class === 'guac') {
-
-//     } else {
-//         console.log('missed')
-//     }
-// })
 
 difficulty.forEach(diff => diff.addEventListener('click', () => {
     choose.play()
@@ -166,6 +171,7 @@ difficulty.forEach(diff => diff.addEventListener('click', () => {
 
 restart.addEventListener('click', () => {
     lost = true
+    restartSound.play();
     endGameModal.classList.remove('modal-active');
     modal.classList.add('modal-active')
 });
